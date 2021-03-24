@@ -8,7 +8,6 @@ import streamlit as st
 #import matplotlib.pyplot as plt
 import geojson as gs
 
-from unidecode import unidecode
 
 import plotly.express as px
 
