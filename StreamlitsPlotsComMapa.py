@@ -4,7 +4,6 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 import geojson as gs
-from unidecode import unidecode
 
 @st.cache
 def carregarMapa():
