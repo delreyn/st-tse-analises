@@ -13,7 +13,8 @@ def obterDFs():
     dadosDrive2018Partidos = pd.read_csv('https://raw.githubusercontent.com/gilvandrocesardemedeiros/DCA_UFRN_Data_Science/main/Data_To_Dashboard/Resumo_Eleitos_2018.csv')
 
     dadosDrive2018Sociais = pd.read_csv('https://raw.githubusercontent.com/gilvandrocesardemedeiros/DCA_UFRN_Data_Science/main/Data_To_Dashboard/Resumo_Perfil_Candidatos_2018%5BFiltrado%5D.csv')
-    return
+    
+    return dadosDrive2018Partidos,dadosDrive2018Sociais,df
 
 @st.cache
 def carregarMapa():
@@ -60,6 +61,7 @@ Gilvandro César
 
 Reyne Jasson
 '''
+
 ETINIAS = ['BRANCA','INDÍGENA','PARDA','PRETA','SEM INFORMAÇÃO']
 
 ESCOLARIDADES = ['ANALFABETO', 'ENSINO FUNDAMENTAL COMPLETO',
@@ -67,7 +69,7 @@ ESCOLARIDADES = ['ANALFABETO', 'ENSINO FUNDAMENTAL COMPLETO',
        'ENSINO MÉDIO INCOMPLETO', 'LÊ E ESCREVE', 'SUPERIOR COMPLETO',
        'SUPERIOR INCOMPLETO']
 
-obterDFs()
+dadosDrive2018Partidos,dadosDrive2018Sociais,df = obterDFs()
 
 partidos = ["solidariedade", "pv", "avante", "cidadania", "dc", "dem", "mdb", "novo", "patriota", "pcb", "pcdob", "pco", "pdt", "phs", 
             "pl", "pmb", "pmn", "pode", "pp", "ppl", "pros", "prp", "prtb", "psb", "psc", "psd", "psdb", 
