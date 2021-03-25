@@ -39,15 +39,15 @@ def obterMapa(rb):
     fig.update_layout(margin={"r":0.5,"t":0,"l":0,"b":0})
     return fig
 
-@st.cache
-def obterMapaEscolaridade(escolaridade):
-    fig = px.choropleth(obterEscolaridades(), geojson=geojsonUF,
-                        locations="SG_UF", featureidkey="properties.UF_05",
-                        projection="mercator",color=escolaridade
-                       )
-    fig.update_geos(fitbounds="locations", visible=False)
-    fig.update_layout(margin={"r":0.5,"t":0,"l":0,"b":0})
-    return fig
+#@st.cache
+#def obterMapaEscolaridade(escolaridade):
+#    fig = px.choropleth(obterEscolaridades(), geojson=geojsonUF,
+#                        locations="SG_UF", featureidkey="properties.UF_05",
+#                        projection="mercator",color=escolaridade
+#                       )
+#    fig.update_geos(fitbounds="locations", visible=False)
+#    fig.update_layout(margin={"r":0.5,"t":0,"l":0,"b":0})
+#    return fig
 
 st.title('Analise das Eleições 2018')
 ETINIAS = ['BRANCA','INDÍGENA','PARDA','PRETA','SEM INFORMAÇÃO']
