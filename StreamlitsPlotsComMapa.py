@@ -51,16 +51,10 @@ def obterMapa(rb):
 #    return fig
 
 
-st.title('Analise das Eleições 2018')
-'''
-Feito com ❤️ por:
-
-Diego Rodrigues
-
-Gilvandro César
-
-Reyne Jasson
-'''
+st.sidebar.title('Visor360 - Análise das Eleições 2018')
+st.sidebar.text('''
+Feito com ❤️ por:\n\nDiego Rodrigues\nGilvandro César\nReyne Jasson
+''')
 
 ETINIAS = ['BRANCA','INDÍGENA','PARDA','PRETA','SEM INFORMAÇÃO']
 
@@ -81,7 +75,7 @@ ufs = [uf.upper() for uf in ufs]
 Rd_Opcao = st.radio("Escolha uma opção:",["BRASIL","UF","PARTIDO"])
 if Rd_Opcao == "BRASIL":#plot Geral do Pais
   rb = st.selectbox("Selecione Grupo", ETINIAS+ESCOLARIDADES)
-  h1 = st.header("Abaixo mostra as analises, use o menu ao lado para filtrar")
+  h1 = st.header("Abaixo mostra as analises, use o menu acima para filtrar")
   geojsonUF = carregarMapa()
 
 
