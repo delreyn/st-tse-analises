@@ -5,23 +5,33 @@ import streamlit as st
 import plotly.graph_objects as go
 import geojson as gs
 
+
+@st.cache
+def obterDFs():
+    df = pd.read_csv('https://raw.githubusercontent.com/delreyn/st-tse-analises/main/Para_plotar.csv?token=AHICD5ZJQFI4XTUQ7IESAL3ALPJEW')
+
+    dadosDrive2018Partidos = pd.read_csv('https://raw.githubusercontent.com/gilvandrocesardemedeiros/DCA_UFRN_Data_Science/main/Data_To_Dashboard/Resumo_Eleitos_2018.csv')
+
+    dadosDrive2018Sociais = pd.read_csv('https://raw.githubusercontent.com/gilvandrocesardemedeiros/DCA_UFRN_Data_Science/main/Data_To_Dashboard/Resumo_Perfil_Candidatos_2018%5BFiltrado%5D.csv')
+    return
+
 @st.cache
 def carregarMapa():
     with open("uf.json", encoding='iso-8859-1') as data_file:                           
         geojsonUF = gs.load(data_file)
     return geojsonUF
 
-@st.cache
-def obterEscolaridades():
-    return pd.read_csv('https://raw.githubusercontent.com/delreyn/st-tse-analises/main/dados_instrucao.csv?token=AHICD55JHUU737XTQDTNDDDALPJIY')
+#@st.cache
+#def obterEscolaridades():
+#   return pd.read_csv('https://raw.githubusercontent.com/gilvandrocesardemedeiros/DCA_UFRN_Data_Science/main/Data_To_Dashboard/dados_instrucao%5B2%5D.csv')
 
 @st.cache
-def obterDadosEtnia():
-    return pd.read_csv('https://raw.githubusercontent.com/delreyn/st-tse-analises/main/Para_plotar.csv?token=AHICD5ZJQFI4XTUQ7IESAL3ALPJEW')
+def obterDados():
+    return pd.read_csv('https://raw.githubusercontent.com/gilvandrocesardemedeiros/DCA_UFRN_Data_Science/main/Data_To_Dashboard/dados_instrucao%5B2%5D.csv')
 
 @st.cache
-def obterMapaEtinia(rb):
-    fig = px.choropleth(obterDadosEtnia(), geojson=geojsonUF,
+def obterMapa(rb):
+    fig = px.choropleth(obterDados(), geojson=geojsonUF,
                         locations="SG_UF", featureidkey="properties.UF_05",
                         projection="mercator",color=rb
                        )
@@ -47,11 +57,7 @@ ESCOLARIDADES = ['ANALFABETO', 'ENSINO FUNDAMENTAL COMPLETO',
        'ENSINO MÉDIO INCOMPLETO', 'LÊ E ESCREVE', 'SUPERIOR COMPLETO',
        'SUPERIOR INCOMPLETO']
 
-df = pd.read_csv('https://raw.githubusercontent.com/delreyn/st-tse-analises/main/Para_plotar.csv?token=AHICD5ZJQFI4XTUQ7IESAL3ALPJEW')
-
-dadosDrive2018Partidos = pd.read_csv('https://raw.githubusercontent.com/gilvandrocesardemedeiros/DCA_UFRN_Data_Science/main/Data_To_Dashboard/Resumo_Eleitos_2018.csv')
-
-dadosDrive2018Sociais = pd.read_csv('https://raw.githubusercontent.com/gilvandrocesardemedeiros/DCA_UFRN_Data_Science/main/Data_To_Dashboard/Resumo_Perfil_Candidatos_2018%5BFiltrado%5D.csv')
+obterDFs()
 
 partidos = ["solidariedade", "pv", "avante", "cidadania", "dc", "dem", "mdb", "novo", "patriota", "pcb", "pcdob", "pco", "pdt", "phs", 
             "pl", "pmb", "pmn", "pode", "pp", "ppl", "pros", "prp", "prtb", "psb", "psc", "psd", "psdb", 
@@ -66,12 +72,13 @@ if Rd_Opcao == "BRASIL":#plot Geral do Pais
   geojsonUF = carregarMapa()
 
 
-  rb = st.sidebar.selectbox("Selecione Grupo Etínico", ETINIAS)
+  
 
-  escolaridade = st.sidebar.selectbox("Selecione Escolaridade", ESCOLARIDADES)
+  #escolaridade = st.sidebar.selectbox("Selecione Escolaridade", ESCOLARIDADES)
 
-  st.plotly_chart(obterMapaEtinia(rb))
-  st.plotly_chart(obterMapaEscolaridade(escolaridade))
+  st.plotly_chart(obterMapa(rb))
+
+  #st.plotly_chart(obterMapaEscolaridade(escolaridade))
 
 
 
@@ -90,6 +97,7 @@ if Rd_Opcao == "BRASIL":#plot Geral do Pais
   st.plotly_chart(Res_BRASIL)
   btnSocialBR = st.button("Caracteristicas Sociais")
   if btnSocialBR:#plot do perfil dos eleitos no Pais
+    rb = st.selectbox("Selecione Grupo Etínico", ETINIAS)
     RES_Social = dadosDrive2018Sociais
     cor = RES_Social.DS_COR_RACA.value_counts()
     genero = RES_Social.DS_GENERO.value_counts()
@@ -165,7 +173,7 @@ elif Rd_Opcao == "UF":
     figInstUf = px.pie(instrucaoUf,instrucaoUf.index,instrucaoUf.values,color_discrete_sequence=px.colors.sequential.Emrld,hole=0.5,title='Grau de instrução')
     st.plotly_chart(figInstUf)
     
-'''
+
 
 
 # eleitosAC = subSet_eleitos_PartidoAC.SG_PARTIDO.value_counts()                                                                                       
@@ -176,7 +184,7 @@ elif Rd_Opcao == "UF":
 # st.pyplot(plt)
 
 
-st.sidebar.markdown('__Olá__')
+#st.sidebar.markdown('__Olá__')
 
 #rb = st.selectbox("Escolha um grupo etinico",ETINIAS)
 
@@ -186,4 +194,4 @@ st.sidebar.markdown('__Olá__')
 ########################### RENDENDERIZA PAGINA ##############################
 
 
-'''
+
