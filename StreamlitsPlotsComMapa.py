@@ -55,7 +55,9 @@ st.title('Analise das Eleições 2018')
 Feito com ❤️ por:
 
 Diego Rodrigues
+
 Gilvandro César
+
 Reyne Jasson
 '''
 ETINIAS = ['BRANCA','INDÍGENA','PARDA','PRETA','SEM INFORMAÇÃO']
@@ -76,7 +78,7 @@ ufs = ["ac","al","am","ap","ba","ce","df","es","go","ma","mg","ms","mt","pa","pb
 ufs = [uf.upper() for uf in ufs]
 Rd_Opcao = st.radio("Escolha uma opção:",["BRASIL","UF","PARTIDO"])
 if Rd_Opcao == "BRASIL":#plot Geral do Pais
-  rb = st.selectbox("Selecione Grupo Etínico", ETINIAS)
+  rb = st.selectbox("Selecione Grupo", ETINIAS+ESCOLARIDADES)
   h1 = st.header("Abaixo mostra as analises, use o menu ao lado para filtrar")
   geojsonUF = carregarMapa()
 
