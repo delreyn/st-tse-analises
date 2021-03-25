@@ -49,7 +49,15 @@ def obterMapa(rb):
 #    fig.update_layout(margin={"r":0.5,"t":0,"l":0,"b":0})
 #    return fig
 
+
 st.title('Analise das Eleições 2018')
+'''
+Feito com ❤️ por:
+
+Diego Rodrigues
+Gilvandro César
+Reyne Jasson
+'''
 ETINIAS = ['BRANCA','INDÍGENA','PARDA','PRETA','SEM INFORMAÇÃO']
 
 ESCOLARIDADES = ['ANALFABETO', 'ENSINO FUNDAMENTAL COMPLETO',
@@ -68,6 +76,7 @@ ufs = ["ac","al","am","ap","ba","ce","df","es","go","ma","mg","ms","mt","pa","pb
 ufs = [uf.upper() for uf in ufs]
 Rd_Opcao = st.radio("Escolha uma opção:",["BRASIL","UF","PARTIDO"])
 if Rd_Opcao == "BRASIL":#plot Geral do Pais
+  rb = st.selectbox("Selecione Grupo Etínico", ETINIAS)
   h1 = st.header("Abaixo mostra as analises, use o menu ao lado para filtrar")
   geojsonUF = carregarMapa()
 
@@ -97,7 +106,7 @@ if Rd_Opcao == "BRASIL":#plot Geral do Pais
   st.plotly_chart(Res_BRASIL)
   btnSocialBR = st.button("Caracteristicas Sociais")
   if btnSocialBR:#plot do perfil dos eleitos no Pais
-    rb = st.selectbox("Selecione Grupo Etínico", ETINIAS)
+    
     RES_Social = dadosDrive2018Sociais
     cor = RES_Social.DS_COR_RACA.value_counts()
     genero = RES_Social.DS_GENERO.value_counts()
